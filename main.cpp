@@ -85,4 +85,5 @@ int main()
         std::cout<<"- the result in Decimal system: ("<<rBinToDec(real)<<"."<<fracBinToDec(frac)<<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
+    std::cin.get();
 }
