@@ -21,10 +21,10 @@ int rBinToDec(unsigned long& real) //* takes the real numbers form the binary
     return result;
 }
 //*
-double fracBinToDec(unsigned long& frac) //* takes the fraction from the bin number
+float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin number
 {
-    long long i = -1;
-    double result = 0;
+    long i = -1;
+    float result = 0;
     //
     while(frac != 0)
     {
@@ -50,7 +50,6 @@ double fracBinToDec(unsigned long& frac) //* takes the fraction from the bin num
 }
 int main()
 {
-    std:: cout<<"----------------------------------------------------------------"<<std:: endl;
     std:: cout<<"- enter a binary number: "<<std:: flush;
     std::string input = "";
     std::getline(std::cin, input);
