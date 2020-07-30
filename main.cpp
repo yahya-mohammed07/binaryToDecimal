@@ -53,22 +53,15 @@ int main()
     std:: cout<<"- enter a binary number: "<<std:: flush;
     std::string input = "";
     std::getline(std::cin, input);
-    std::string sReal = "";
     std::string sFraction = "";
     bool check = false;
-    //*
-    for (int i: input)
-    {
-        if(i == '.') 
-        {
-            check = true; 
-            break;
-        }
-        sReal += i;
-    }
     for (int i = input.length()-1; i>0;i--)
     {
-        if (input[i] == '.') break;
+        if (input[i] == '.') 
+        {
+            check = true;
+            break;
+        }
         sFraction += input[i];
     }
     //*
@@ -79,7 +72,7 @@ int main()
     }
     else
     {
-        unsigned long  real = std::stoul(sReal);
+        unsigned long  real = std::floor(std::stoul(input));
         unsigned long  frac = std::stoul(sFraction);
         std::cout<<"- the result in Decimal system: ("<<rBinToDec(real)<<"."<<fracBinToDec(frac)<<")10"<<std::endl;
     }
