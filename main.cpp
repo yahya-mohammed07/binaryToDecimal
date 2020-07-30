@@ -24,7 +24,7 @@ int rBinToDec(unsigned long& real) //* takes the real numbers form the binary
 double fracBinToDec(unsigned long& frac) //* takes the fraction from the bin number
 {
     long long i = -1;
-    float result = 0;
+    double result = 0;
     //
     while(frac != 0)
     {
