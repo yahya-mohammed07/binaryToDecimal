@@ -6,9 +6,8 @@
 //*
 int rBinToDec(unsigned long & real) //* takes the real numbers form the binary
 {
-    long long i = 0;
-    unsigned long long result = 0;
-    //
+    long i = 0;
+    unsigned long result = 0;
     while(real != 0)
     {
         result += (real % 10) * std::pow(2,i);
@@ -27,7 +26,6 @@ float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin num
 {
     long i = -1;
     float result = 0;
-    //
     while(frac != 0)
     {
         result += (frac % 10) * std::pow(2,i);
@@ -47,6 +45,7 @@ int main()
     std::getline(std::cin, input);
     std::string sFraction = "";
     bool check = false;
+    //*
     for (int i = input.length()-1; i>0;i--)
     {
         if (input[i] == '.') 
@@ -71,5 +70,5 @@ int main()
         <<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
-    std::cin.get();
+    main();
 }
