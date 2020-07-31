@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iomanip>
 //*
-int rBinToDec(unsigned long& real) //* takes the real numbers form the binary
+int rBinToDec(unsigned long & real) //* takes the real numbers form the binary
 {
     long long i = 0;
     unsigned long long result = 0;
