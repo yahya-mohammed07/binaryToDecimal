@@ -38,16 +38,6 @@ float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin num
         frac  = frac / 10;
         i--;
     }
-    /*std::string temp = std::to_string(result);//* FIXME: can't get full precision float value
-    std::string theFraction = "";
-    //*
-    for (int i=temp.length()-1 ; i>0;i--)
-    {
-        if(temp[i]== '.') break;
-        theFraction += temp[i];
-    }
-    std::reverse(theFraction.begin(),theFraction.end());
-    result = std::stol (theFraction);*/
     return result;
 }
 int main()
