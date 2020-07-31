@@ -2,6 +2,7 @@
 #include <math.h>
 #include <string>
 #include <algorithm>
+#include <iomanip>
 //*
 int rBinToDec(unsigned long& real) //* takes the real numbers form the binary
 {
@@ -37,7 +38,7 @@ float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin num
         frac  = frac / 10;
         i--;
     }
-    std::string temp = std::to_string(result);//* FIXME: can't get full precision float value
+    /*std::string temp = std::to_string(result);//* FIXME: can't get full precision float value
     std::string theFraction = "";
     //*
     for (int i=temp.length()-1 ; i>0;i--)
@@ -46,7 +47,7 @@ float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin num
         theFraction += temp[i];
     }
     std::reverse(theFraction.begin(),theFraction.end());
-    result = std::stol (theFraction);
+    result = std::stol (theFraction);*/
     return result;
 }
 int main()
@@ -75,8 +76,7 @@ int main()
     {
         unsigned long  real = std::floor(std::stoul(input));
         unsigned long  frac = std::stoul(sFraction);
-        std::cout<<"- the result in Decimal system: ("<<rBinToDec(real)<<"."
-        <<fracBinToDec(frac)<<")10"<<std::endl;
+        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(real)+fracBinToDec(frac)<<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
     std::cin.get();
