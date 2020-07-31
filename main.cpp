@@ -65,8 +65,7 @@ int main()
     {
         unsigned long  real = std::floor(std::stoul(input));
         unsigned long  frac = std::stoul(sFraction);
-        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<
-        rBinToDec(real)+fracBinToDec(frac)
+        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(real)+fracBinToDec(frac)
         <<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
