@@ -13,7 +13,8 @@ int rBinToDec(unsigned long& real) //* takes the real numbers form the binary
         result += (real % 10) * std::pow(2,i);
         if(real % 10 > 1 || real % 10 < 0)  //* to check if the number is bin or not
         {
-            throw std::domain_error("not binary system!"); //* throw run-time error if the the number is not binary
+            throw std::domain_error("not binary system!"); //* throw run-time error 
+                                                           //*if the the number is not binary
         }
         real  = real / 10;
         i++;
@@ -36,7 +37,7 @@ float fracBinToDec(unsigned long & frac) //* takes the fraction from the bin num
         frac  = frac / 10;
         i--;
     }
-    std::string temp = std::to_string(result);
+    std::string temp = std::to_string(result);//* FIXME: can't get full precision float value
     std::string theFraction = "";
     //*
     for (int i=temp.length()-1 ; i>0;i--)
@@ -74,7 +75,8 @@ int main()
     {
         unsigned long  real = std::floor(std::stoul(input));
         unsigned long  frac = std::stoul(sFraction);
-        std::cout<<"- the result in Decimal system: ("<<rBinToDec(real)<<"."<<fracBinToDec(frac)<<")10"<<std::endl;
+        std::cout<<"- the result in Decimal system: ("<<rBinToDec(real)<<"."
+        <<fracBinToDec(frac)<<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
     std::cin.get();
