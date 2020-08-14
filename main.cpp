@@ -1,21 +1,16 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <string>
-#include <algorithm>
 #include <iomanip>
+#include <chrono>
 //*
 int rBinToDec(const std::string & integer) //* takes the real numbers form the binary
 {
-    int j = 0;
-    int result = 0;
-    for (int i = integer.length()-1; i >= 0; i--, j++)
+    int result = 0,  power = 0;
+    for (int i = integer.length()-1; i >= 0; i--, power++)
     {
-        int intValue = integer[i] - '0';
-        result += intValue * std::pow(2,j);
-        if(intValue > 1 || intValue < 0)
-        {
-            throw std::domain_error("not binary system!");
-        }
+        if((integer[i]) != '1' && (integer[i]) != '0') return 0;
+        result += (integer[i] - '0') * std::pow(2,power);
     }
 
     return result;
@@ -23,26 +18,23 @@ int rBinToDec(const std::string & integer) //* takes the real numbers form the b
 //*
 float fracBinToDec(const std::string & frac) //* takes the fraction from the bin number
 {
-    int j = -1;
+    int power = -1;
     float result = 0;
-    for (std::size_t i = 0; i < frac.length(); i++, j--)
+    for (std::size_t i = 0; i < frac.length(); i++, power--)
     {
-        int intFrac = frac[i] - '0';
-        result += intFrac * std::pow(2,j);
-        if(intFrac > 1 || intFrac < 0)
-        {
-            throw std::domain_error("not binary system!");
-        }
+        if((frac[i]) != '1' && (frac[i]) != '0') return 0;
+        result += (frac[i] - '0') * std::pow(2,power);
     }
     
     return result;
 }
 int main()
 {
-    std:: cout<<"- enter a binary number: "<<std:: flush;
+    std::cout<<"- enter a binary number: "<<std::flush;
     std::string input = "";
     std::getline(std::cin, input);
-    std::string sFraction = "";
+    //*
+    auto start = std::chrono::high_resolution_clock::now();
     //*
     std::string integer = "";
     for (char i : input)
@@ -51,6 +43,7 @@ int main()
         integer += i;
     }
     bool check = false;
+    std::string fraction = "";
     for (int i = input.length()-1; i>0;i--)
     {
         if (input[i] == '.') 
@@ -58,7 +51,7 @@ int main()
             check = true;
             break;
         }
-        sFraction += input[i];
+        fraction += input[i];
     }
     //*
     if(check == false)
@@ -67,8 +60,10 @@ int main()
     }
     else
     {
-        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(integer)+fracBinToDec(sFraction)<<")10"<<std::endl;
+        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(integer)+fracBinToDec(fraction)<<")10"<<std::endl;
     }
     std:: cout<<"----------------------------------------------------------------"<<std:: endl;
-    main();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration <float> duration(end - start);
+    std::cout<<"Time lapsed: "<<std::setprecision(6)<<duration.count()<<" seconds"<<std::endl;
 }
