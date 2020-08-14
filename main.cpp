@@ -2,7 +2,7 @@
 #include <cmath>
 #include <string>
 #include <iomanip>
-#include <chrono>
+#include <algorithm>
 //*
 int rBinToDec(const std::string & integer) //* takes the real numbers form the binary
 {
@@ -34,8 +34,6 @@ int main()
     std::string input = "";
     std::getline(std::cin, input);
     //*
-    auto start = std::chrono::high_resolution_clock::now();
-    //*
     std::string integer = "";
     for (char i : input)
     {
@@ -54,16 +52,14 @@ int main()
         fraction += input[i];
     }
     //*
+    std::reverse(fraction.begin(),fraction.end());
     if(check == false)
     {
-        std::cout<<"- result in Decimal system: ("<<rBinToDec(integer)<<")10"<<std::endl;
+        std::cout<<"- result in Decimal system: ("<<rBinToDec(integer)<<")10\n";
     }
     else
     {
-        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(integer)+fracBinToDec(fraction)<<")10"<<std::endl;
+        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(integer)+fracBinToDec(fraction)<<")10\n";
     }
-    std:: cout<<"----------------------------------------------------------------"<<std:: endl;
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration <float> duration(end - start);
-    std::cout<<"Time lapsed: "<<std::setprecision(6)<<duration.count()<<" seconds"<<std::endl;
+    std:: cout<<"----------------------------------------------------------------\n";
 }
