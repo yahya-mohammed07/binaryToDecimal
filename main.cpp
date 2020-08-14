@@ -4,30 +4,9 @@
 #include <iomanip>
 #include <algorithm>
 //*
-int rBinToDec(const std::string & integer) //* takes the real numbers form the binary
-{
-    int result = 0,  power = 0;
-    for (int i = integer.length()-1; i >= 0; i--, power++)
-    {
-        if((integer[i]) != '1' && (integer[i]) != '0') return 0;
-        result += (integer[i] - '0') * std::pow(2,power);
-    }
-
-    return result;
-}
+int rBinToDec(const std::string & integer);
+float fracBinToDec(const std::string & frac);
 //*
-float fracBinToDec(const std::string & frac) //* takes the fraction from the bin number
-{
-    int power = -1;
-    float result = 0;
-    for (std::size_t i = 0; i < frac.length(); i++, power--)
-    {
-        if((frac[i]) != '1' && (frac[i]) != '0') return 0;
-        result += (frac[i] - '0') * std::pow(2,power);
-    }
-    
-    return result;
-}
 int main()
 {
     std::cout<<"- enter a binary number: "<<std::flush;
@@ -62,4 +41,29 @@ int main()
         std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<rBinToDec(integer)+fracBinToDec(fraction)<<")10\n";
     }
     std:: cout<<"----------------------------------------------------------------\n";
+}
+//*
+int rBinToDec(const std::string & integer) //* takes the real numbers form the binary
+{
+    int result = 0,  power = 0;
+    for (int i = integer.length()-1; i >= 0; i--, power++)
+    {
+        if((integer[i]) != '1' && (integer[i]) != '0') return 0;
+        result += (integer[i] - '0') * std::pow(2,power);
+    }
+
+    return result;
+}
+//*
+float fracBinToDec(const std::string & frac) //* takes the fraction from the bin number
+{
+    int power = -1;
+    float result = 0;
+    for (std::size_t i = 0; i < frac.length(); i++, power--)
+    {
+        if((frac[i]) != '1' && (frac[i]) != '0') return 0;
+        result += (frac[i] - '0') * std::pow(2,power);
+    }
+    
+    return result;
 }
