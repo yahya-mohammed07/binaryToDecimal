@@ -2,7 +2,6 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
-#include <math.h>
 //*
 int intBin(const std::string & integer, const int & size);
 float fracBin(const std::string & frac, const int & size);
@@ -86,7 +85,7 @@ int myPowInt(const int & base, const int & power)
 float myPowFloat(const int & number, int times)
 {
     float result = 1;
-    times = std::abs(times);
+    times = (-1 * times);
     for (int i = 0; i < times; ++i)
     {
         result *= (1.0 / number);
