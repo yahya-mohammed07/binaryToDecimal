@@ -2,7 +2,7 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
-#include <cmath>
+#include <math.h>
 //*
 int rBinToDec(const std::string & integer);
 float fracBinToDec(const std::string & frac);
