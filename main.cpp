@@ -6,34 +6,36 @@
 //*
 int rBinToDec(const std::string & integer);
 float fracBinToDec(const std::string & frac);
-int myPow(const int & base, const int & power); //* to get rid of std::pow
+int myPowInt(const int & number, const int & times); //* to get rid of std::pow
+float myPowFloat(const int & number, const int & times);
+
 
 //*
 int main()
 {
     std::cout<<"- enter a binary number: "<<std::flush;
-    std::string input = "1011010101.1110101";
-    //std::getline(std::cin, input);
+    std::string input = "";
+    std::getline(std::cin, input);
     //*
-    std::string integer = "";
+    std::string integer = ""; //* to extract the integer numbers
     for (char i : input)
     {
         if(i == '.') break;
         integer += i;
     }
     bool check = false;
-    std::string fraction = "";
-    for (int i = input.length()-1; i>0;i--)
+    std::string fraction = ""; //* to extract the fractions after the decimal point
+    for (int i = input.length() - 1; i > 0; i--)
     {
         if (input[i] == '.') 
         {
-            check = true;
+            check = true; //* to check if the number has decimal point
             break;
         }
         fraction += input[i];
     }
     //*
-    std::reverse(fraction.begin(),fraction.end());
+    std::reverse(fraction.begin(),fraction.end()); //* reverse the number to get the left most numbers
     if(check == false)
     {
         std::cout<<"- result in Decimal system: ("<<rBinToDec(integer)<<")10\n";
@@ -51,7 +53,7 @@ int rBinToDec(const std::string & integer) //* takes the real numbers form the b
     for (int i = integer.length()-1; i >= 0; i--, power++)
     {
         if((integer[i]) != '1' && (integer[i]) != '0') return 0;
-        result += (integer[i] - '0') * myPow(2,power);
+        result += (integer[i] - '0') * myPowInt(2,power);
     }
 
     return result;
@@ -64,13 +66,13 @@ float fracBinToDec(const std::string & frac) //* takes the fraction from the bin
     for (std::size_t i = 0; i < frac.length(); i++, power--)
     {
         if((frac[i]) != '1' && (frac[i]) != '0') return 0;
-        result += (frac[i] - '0') * std::pow(2,power); //* TODO: make myPow works on this too
+        result += (frac[i] - '0') * myPowFloat(2,power);
     }
     
     return result;
 }
-
-int myPow(const int & base, const int & power)
+//* my pow
+int myPowInt(const int & base, const int & power)
 {
     int result = 1;
     for (int i = 0; i < power; ++i)
@@ -78,5 +80,15 @@ int myPow(const int & base, const int & power)
         result *= base;
     }
     
-    return std::abs(result);
+    return result;
+}
+float myPowFloat(const int & number, const int & times)
+{
+    float result = 1;
+    for (int i = 0; i < std::abs(times); ++i)
+    {
+        result *= (1.0 / number);
+    }
+    
+    return result;
 }
