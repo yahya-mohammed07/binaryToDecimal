@@ -7,9 +7,7 @@
 int rBinToDec(const std::string & integer);
 float fracBinToDec(const std::string & frac);
 int myPowInt(const int & number, const int & times); //* to get rid of std::pow
-float myPowFloat(const int & number, const int & times);
-
-
+float myPowFloat(const int & number, const int & times); //* to get rid of std::pow
 //*
 int main()
 {
