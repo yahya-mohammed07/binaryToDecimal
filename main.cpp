@@ -12,8 +12,8 @@ float myPowFloat(const int & number, int times); //* to get rid of std::pow
 int main()
 {
     std::cout<<"- enter a binary number: "<<std::flush;
-    std::string input = "1101011";
-    //std::cin>>input;
+    std::string input = "";
+    std::cin>>input;
     //*
     std::string integer = ""; //* to extract the integer numbers
     bool check = false;
@@ -35,13 +35,13 @@ int main()
     else
     {
         std::string fraction = ""; //* to extract the fractions after the decimal point
-        for (int i = input.length() - 1; i > 0; i--)
+        std::reverse(input.begin(), input.end());
+        for (char i : input)
         {
-            if (input[i] == '.') break;
-            fraction += input[i];
+            if(i == '.') break;
+            fraction += i;
         }
         //
-        std::reverse(fraction.begin(),fraction.end()); //* reverse the number to get the left most numbers
         int sizeFrac = fraction.length();
         std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac)<<")10\n";
     }
@@ -64,7 +64,7 @@ float fracBin(const std::string & frac, const int & size) //* takes the fraction
 {
     int power = -1;
     float result = 0;
-    for (std::size_t i = 0; i < size; i++, power--)
+    for (int i = size-1; i >=0; i--, power--)
     {
         if((frac[i]) != '1' && (frac[i]) != '0') return 0;
         result += (frac[i] - '0') * myPowFloat(2,power);
