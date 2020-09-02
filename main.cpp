@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <chrono>
-#include "myPow.h" // got rid of math.h
+#include "myPow.h"h
 
 //
 int intBin(const std::string & integer, const int & size);
