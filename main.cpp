@@ -2,20 +2,25 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
+#include <chrono>
 #include "myPow.h" // got rid of math.h
+
 //
 int intBin(const std::string & integer, const int & size);
-float fracBin(const std::string & frac, const int & size);
+double fracBin(const std::string & frac, const int & size);
 //
 int main()
 {
     std::cout<<"- enter a binary number: "<<std::flush;
     std::string input = "";
     std::cin>>input;
+    std::cin.ignore();
+    // taking input from the user will make it little bit slower
+    auto start = std::chrono::high_resolution_clock::now();
     // to extract the integer numbers
     std::string integer = "";
     bool check = false;
-    for (char i : input)
+    for (unsigned char i : input)
     {
         if(i == '.') 
         {
@@ -26,7 +31,7 @@ int main()
         integer += i;
     }
     int sizeInteger = integer.length();
-    //
+    // if there is no floating point
     if(check == false)
     {
         std::cout<<"- result in Decimal system: ("<<intBin(integer, sizeInteger)<<")10\n";
@@ -46,6 +51,10 @@ int main()
         std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac)<<")10\n";
     }
     std:: cout<<"----------------------------------------------------------------\n";
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<float> duration(end - start);
+    printf("time: %0.4f millsecond\n\n", duration.count() * 1000);
+
 }
 // takes the int numbers form the bin
 int intBin(const std::string & integer, const int & size) 
@@ -60,10 +69,10 @@ int intBin(const std::string & integer, const int & size)
     return result;
 }
 // takes the fraction from the bin
-float fracBin(const std::string & frac, const int & size) 
+double fracBin(const std::string & frac, const int & size) 
 {
     int power = -1;
-    float result = 0;
+    double result = 0;
     for (int i = size-1; i >=0; i--, power--)
     {
         if((frac[i]) != '1' && (frac[i]) != '0') return 0;
