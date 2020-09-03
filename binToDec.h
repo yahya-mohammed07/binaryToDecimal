@@ -4,7 +4,7 @@
 #include <string>
 #include "myPow.h"
 /*
-* bases on algorithm witch takes for non float number the right most number and
+* based on algorithm witch takes for non float number the right most number and
 * multiplies them with 2^0 and so on
 */
 long long intBin(const std::string & integer, const std::size_t & size) 
@@ -20,7 +20,7 @@ long long intBin(const std::string & integer, const std::size_t & size)
     return result;
 }
 /*
-* bases on algorithm witch takes the numbers after the fraction and multiplies them with 
+* based on algorithm witch takes the numbers after the fraction and multiplies them with 
 * 2^-1 and so on
 */
 long double fracBin(const std::string & frac, const std::size_t & size) 
