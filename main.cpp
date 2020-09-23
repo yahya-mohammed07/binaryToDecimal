@@ -5,7 +5,7 @@
 
 #include "binToDec.h"
 //
-int main()
+auto main() -> int
 {
     std::cout<<"- enter a binary number: "<<std::flush;
     std::string input = "";
@@ -44,10 +44,11 @@ int main()
         }
         //
         std::size_t sizeFrac = fraction.length();
-        std::cout<<"- the result in Decimal system: ("<<std::setprecision(21)<<intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac)<<")10\n";
+        std::cout<<"- the result in Decimal system: ("
+        <<std::setprecision(21)<<intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac)<<")10\n";
     }
     std:: cout<<"----------------------------------------------------------------\n";
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<float> duration(end - start);
-    printf("time: %0.4f millsecond\n\n", duration.count() * 1000);
+    printf("time: %0.4f ms\n\n", duration.count() * 1000);
 }
