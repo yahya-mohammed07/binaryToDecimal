@@ -1,9 +1,8 @@
-#include <iostream>
 #include <iomanip>
 #include <algorithm>
 #include <chrono>
 
-#include "binToDec.h"
+#include "binToDec.hpp"
 //
 auto main() -> int
 {
@@ -18,24 +17,24 @@ auto main() -> int
     bool check = false;
     for (unsigned char i : input)
     {
-        if(i == '.') 
+        if(i == '.')
         {
-            // to check if the number has floating point
-            check = true; 
+            // to check if the number has decimal point
+            check = true;
             break;
         }
         integer += i;
     }
     std::size_t sizeInteger = integer.length();
-    // if there is no floating point
+    // if there is no decimal point
     if(check == false)
     {
-        std::cout<<"- result in Decimal system: ("<<intBin(integer, sizeInteger)<<")10\n";
+        out("- result in Decimal system: (",intBin(integer, sizeInteger),")10\n");
     }
     else
     {
         // to extract the fractions after the decimal point
-        std::string fraction = ""; 
+        std::string fraction = "";
         std::reverse(input.begin(), input.end());
         for (char i : input)
         {
@@ -44,10 +43,10 @@ auto main() -> int
         }
         //
         std::size_t sizeFrac = fraction.length();
-        std::cout<<"- the result in Decimal system: ("
-        <<std::setprecision(21)<<intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac)<<")10\n";
+        out("- the result in Decimal system: ("
+        ,std::setprecision(21),intBin(integer, sizeInteger)+fracBin(fraction, sizeFrac),")10\n");
     }
-    std:: cout<<"----------------------------------------------------------------\n";
+    out("----------------------------------------------------------------\n");
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<float> duration(end - start);
     printf("time: %0.4f ms\n\n", duration.count() * 1000);

@@ -2,7 +2,7 @@
 #define __BINTODEC_H__
 
 #include <string>
-#include "magic.h"
+#include "magic.hpp"
 /*
 * based on algorithm witch takes for non float number the right most number and
 * multiplies them with 2^0 and so on
@@ -20,10 +20,10 @@ auto intBin = [] (const std::string & integer, const std::size_t & size) -> std:
     return result;
 };
 /*
-* based on algorithm witch takes the numbers after the fraction and multiplies them with 
+* based on algorithm witch takes the numbers after the fraction and multiplies them with
 * 2^-1 and so on
 */
-auto fracBin = [] (const std::string & frac, const std::size_t & size) -> long double 
+auto fracBin = [] (const std::string & frac, const std::size_t & size) -> long double
 {
     long long power = -1;
     long double result = 0;

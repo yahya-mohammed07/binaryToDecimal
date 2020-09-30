@@ -1,15 +1,27 @@
-#ifndef __MAGIC_H__
-#define __MAGIC_H__
+#ifndef __MAGIC_HPP__
+#define __MAGIC_HPP__
 
-#include <cstdint>
-
+#include <iostream>
+//
+/**
+* @brief print function similar to what in python
+*/
+auto out() -> void {};
+//
+template <typename First, typename ... Second>
+auto out(First arg, const Second& ... rest) -> void
+{
+    std::cout << arg;
+    out(rest...);
+}
+//
 namespace math
 {
     /**
     * @brief This lamda swaps two integer values
     * @param first var from the user
     * @param second var you want to swap a with
-    * @file magic.h
+    * @file magic.hpp
     */
     auto swap = [] (auto &first, auto &second) -> void
     {std::int64_t temp = first; first = second; second = temp;};
@@ -25,7 +37,7 @@ namespace math
         * @param power the user enters the power
         * @file magic.h
         */
-        template <typename T> 
+        template <typename T>
         T powInt (const T &base,const std::uint64_t &power)
         {
             std::int64_t result = 1;
@@ -40,10 +52,10 @@ namespace math
         * @note give the type of the template
         * @param base the user enters the base
         * @param power the user enters the power as negative number
-        * @file magic.h
+        * @file magic.hpp
         */
-        template<typename T> 
-        T powFloat(const T &base, std::int64_t power)
+        template<typename T>
+        T powFloat(const std::int64_t &base, T power)
         {
             long double result = 1;
             if (power != 0)
@@ -56,7 +68,7 @@ namespace math
     /**
     * @brief This lamda reverse a given number
     * @param n the number needed to be reversed,
-    * @file magic.h
+    * @file magic.hpp
     */
     auto reverse = [] (auto n) -> std::int64_t
     {
@@ -71,20 +83,45 @@ namespace math
     };
 }
 /**
+* @namespace convert contains converting units functions
+*/
+namespace convert
+{
+    /**
+    * @brief the func converts binary to decimal (no decimal point)
+    * @param integer give string of binary
+    * @param size give size of the string (integer)
+    * @file magic.hpp
+    */
+    template<typename T>
+    std::uint64_t dec (const T & integer, const std::int64_t & size)
+    {
+        std::uint64_t result = 0, power = 0;
+        for (std::int64_t i = size - 1; i >= 0; i--, power++)
+        {
+            // returns 0 if the input was not 1 or 0
+            if((integer[i]) != '1' && (integer[i]) != '0') return 0;
+            //
+            result += (integer[i] - '0') * math::pow::powInt<std::uint64_t> (2,power);
+        }
+        return result;
+    }
+}
+/**
 * @namespace sort contains sorting algorithms
 */
 namespace sort
 {
     /**
     * @brief This func sorts int value as ascending or deascending orders
-    * @note put <int*> for static arrays and <std::vector<int>&> for vectors
+    * @note put <int*> for static arrays and <std::vector<int>&> for vectors and <std::string&> for strings
     * @param arr to take an array from the user
     * @param size the user gives the size of the array
     * @param order as bool put value true for ascending or flase for deascending
-    * @file magic.h
+    * @file magic.hpp
     */
-    template<typename T> 
-    void bubble(T arr, const std::uint64_t &size, const bool &order)
+    template<typename T>
+    auto bubble(T arr, const std::uint64_t &size, const bool &order) -> void
     {
         for (long i = 0; i < size; i++)
         {
@@ -116,14 +153,14 @@ namespace sort
     }
     /**
     * @brief This func sorts int value as ascending or deascending orders
-    * @note put <int*> for static arrays and <std::vector<int>&> for vectors
+    * @note put <int*> for static arrays and <std::vector<int>&> for vectors and <std::string&> for strings
     * @param arr to take an array from the user
     * @param size the user gives the size of the array
     * @param order as bool put value true for ascending or flase for deascending
-    * @file magic.h
+    * @file magic.hpp
     */
-    template<typename T> 
-    void selection(T arr, const std::uint64_t &size, const bool &order)
+    template<typename T>
+    auto selection(T arr, const std::uint64_t &size, const bool &order) -> void
     {
         for (long i = 0; i < size - 1; i++)
         {
@@ -157,14 +194,14 @@ namespace sort
     }
     /**
     * @brief This func sorts int value as ascending or deascending orders
-    * @note put <int*> for static arrays and <std::vector<int>&> for vectors
+    * @note put <int*> for static arrays and <std::vector<int>&> for vectors and <std::string&> for strings
     * @param arr to take an array from the user
     * @param size the user gives the size of the array
     * @param order as bool put value true for ascending or flase for deascending
-    * @file magic.h
+    * @file magic.hpp
     */
-    template<typename T> 
-    void insertion(T arr, const std::uint64_t &size, const bool &order)
+    template<typename T>
+    auto insertion(T arr, const std::uint64_t &size, const bool &order) -> void
     {
         for (long i = 1; i < size; i++)
         {
@@ -195,16 +232,16 @@ namespace search
 {
     /**
     * @brief This func seaches recursively for a number in a given array
-    * @note put <int*> for static arrays and <std::vector<int>&> for vectors
+    * @note put <int*> for static arrays and <std::vector<int>&> for vectors and <std::string&> for strings
     * @param arr to take an array from the user
     * @param target the user give the number to look for
     * @param first always put 0
     * @param last the user gives size - 1,
     * returns -1 if not found
-    * @file magic.h
+    * @file magic.hpp
     */
-    template<typename T> 
-    int binary(T arr, const long &target, int first, std::uint64_t last)
+    template<typename T>
+    auto binary(T arr, const long &target, int first, std::uint64_t last) -> int
     {
         long mid = 0;
         mid = (first + last) / 2;
@@ -227,16 +264,16 @@ namespace search
     }
     /**
     * @brief This func seaches recursively for a number in a given array
-    * @note put <int*> for static arrays and <std::vector<int>&> for vectors
+    * @note put <int*> for static arrays and <std::vector<int>&> for vectors and <std::string&> for strings
     * @param arr to take an array from the user
     * @param target the user give the number to look for
     * @param start always put 0
     * @param size the user gives size - 1,
     * returns -1 if not found
-    * @file magic.h
+    * @file magic.hpp
     */
     template<typename T>
-    int linear(T arr, const std::uint32_t &target, int start, const std::uint64_t size)
+    auto linear(T arr, const std::uint32_t &target, int start, const std::uint64_t size) -> int
     {
         if (start > size)
         {
@@ -249,4 +286,4 @@ namespace search
         return linear(arr, target, start + 1, size);
     }
 }
-#endif // __MAGIC_H__
+#endif // __MAGIC_HPP__
