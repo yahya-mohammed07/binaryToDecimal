@@ -1,5 +1,5 @@
-#ifndef __BINTODEC_H__
-#define __BINTODEC_H__
+#ifndef _BINTODEC_HPP
+#define _BINTODEC_HPP
 
 #include <string>
 #include "magic.hpp"
@@ -36,4 +36,4 @@ auto fracBin = [] (const std::string & frac, const std::size_t & size) -> long d
     }
     return result;
 };
-#endif // __BINTODEC_H__
+#endif // _BINTODEC_HPP
